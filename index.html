@@ -1,0 +1,680 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#d97732"><meta name="description" content="نرم‌افزار مهندسی و محاسبات سازه‌های فلزی FabSteel">
+<meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="FabSteel">
+<link rel="manifest" href="./manifest.webmanifest"><link rel="icon" href="./icon-192.png" type="image/png"><link rel="apple-touch-icon" href="./icon-192.png">
+<title>FabSteel | مهندسی هوشمند</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap');
+:root{--bg:#07111b;--panel:#101e2b;--panel2:#142638;--line:#24445a;--cyan:#35e0dc;--blue:#48a9ff;--muted:#91a9bb;--white:#effaff;--gold:#ffc96b}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -20%,#173b54 0%,#091725 42%,#050b12 100%);color:var(--white);font-family:Vazirmatn,system-ui,sans-serif;min-height:100vh}
+.app{max-width:520px;margin:auto;padding:18px 14px 100px}.top{display:flex;justify-content:space-between;align-items:center;margin:5px 2px 18px}.brand{display:flex;align-items:center;gap:10px}.logo{width:48px;height:48px;border-radius:15px;background:linear-gradient(145deg,#1e526d,#0b1a29);border:1px solid #4b9bb5;box-shadow:inset 0 1px 10px #74e9ff55,0 8px 24px #0008;display:grid;place-items:center;font-size:25px}.logo img{display:block;width:100%;height:100%;object-fit:cover;border-radius:50%;animation:fabLogoFloat 3.2s ease-in-out infinite;}
+.brand h1{font-size:21px;letter-spacing:1px;margin:0;font-weight:900}.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:1.5px}.status{font-size:10px;color:var(--cyan);border:1px solid #2b777b;border-radius:30px;padding:6px 10px;background:#0d3337}
+.hero{position:relative;overflow:hidden;border:1px solid #28516a;border-radius:24px;padding:20px 18px;background:linear-gradient(130deg,#17384b,#102333 55%,#0b1825);box-shadow:0 18px 35px #0006,inset 0 1px 0 #ffffff18;margin-bottom:17px}.hero:after{content:"";position:absolute;width:180px;height:180px;border:1px solid #48c7d322;border-radius:50%;left:-55px;top:-75px;box-shadow:0 0 0 17px #48c7d30a,0 0 0 35px #48c7d307}.hero h2{font-size:19px;margin:0 0 5px}.hero p{font-size:11px;color:#a9c3d3;margin:0;max-width:260px}.robot{position:absolute;left:16px;right:16px;bottom:9px;display:flex;flex-direction:column;align-items:center;gap:3px;text-align:center;filter:drop-shadow(0 5px 12px #0008)}
+.hero-brand{font-family:Arial,sans-serif;font-size:clamp(29px,8vw,43px);font-weight:1000;letter-spacing:1px;line-height:1.05;background:linear-gradient(180deg,#fff5c4 0%,#ffd65c 28%,#c88718 58%,#fff0a6 78%,#a96a0b 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:.45px #ffe7a0;text-shadow:0 2px 0 #68410a,0 5px 12px #0009}
+.hero-instagram{font-family:Arial,sans-serif;direction:ltr;color:#d9f5e3;font-size:11px;font-weight:800;letter-spacing:1px;text-shadow:0 1px 5px #000}
+.hero-owner{font-size:20px;font-weight:1000;letter-spacing:.2px;background:linear-gradient(180deg,#fff5c4,#ffd65c 35%,#c88718 70%,#fff0a6);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 2px 7px #0009}
+.hero{padding-bottom:100px;min-height:190px}
+.metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:17px}.metric{border:1px solid #285064;border-radius:17px;padding:12px;background:linear-gradient(145deg,#183447aa,#0d1b28);box-shadow:inset 0 1px 0 #ffffff12}.metric span{font-size:10px;color:var(--muted)}.metric strong{display:block;font-size:21px;color:var(--cyan);margin-top:3px}.metric em{font-size:10px;color:#b4cbd8;font-style:normal}
+.tabs{display:flex;gap:7px;margin:15px 0;overflow:auto}.tab{flex:1;white-space:nowrap;border:1px solid #28495d;background:#102131;color:#a9c3d3;border-radius:12px;padding:11px 9px;font:800 13px Vazirmatn}.tab.active{color:#04151b;background:linear-gradient(135deg,#5af1df,#3caee9);border-color:#7affef;box-shadow:0 5px 18px #28cdd344}
+.card{background:linear-gradient(145deg,#132638,#0d1b28);border:1px solid #25465b;border-radius:20px;padding:16px;margin-bottom:13px;box-shadow:0 12px 25px #0004,inset 0 1px 0 #ffffff0d}.card h3{font-size:14px;margin:0 0 13px;display:flex;align-items:center;gap:8px}.dot{width:7px;height:7px;background:var(--cyan);border-radius:50%;box-shadow:0 0 10px var(--cyan)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field{margin-bottom:10px}.field label{display:block;font-size:10px;color:#a8bfce;margin:0 0 5px}.field input,.field select{width:100%;border:1px solid #2b4e63;border-radius:11px;background:#081722;color:#f0fbff;padding:11px 10px;font:500 12px Vazirmatn;outline:none}.field input:focus,.field select:focus{border-color:var(--cyan);box-shadow:0 0 0 2px #35e0dc22}.unit{font-size:9px;color:#7e9aac;margin-top:4px}.btn{width:100%;border:0;border-radius:13px;padding:12px;font:800 12px Vazirmatn;color:#06202a;background:linear-gradient(135deg,#6bf3df,#43b5f2);box-shadow:0 7px 20px #25cbd333;cursor:pointer}.btn.secondary{background:#173246;color:#c4f5fa;border:1px solid #35647a;box-shadow:none}.btnrow{display:flex;gap:8px;margin-top:8px}.btnrow .btn{flex:1}.hint{font-size:10px;color:#829eaf;line-height:1.9;margin:9px 0 0}
+.listitem{border:1px solid #25465a;border-radius:13px;padding:11px;margin:8px 0;background:#0a1925}.listitemtop{display:flex;justify-content:space-between;gap:8px;font-size:11px;font-weight:700}.listitem small{display:block;color:#8ba6b8;font-size:10px;line-height:1.9;margin-top:5px}.remove{background:#44222b;color:#ff9eaa;border:0;border-radius:8px;padding:3px 8px}
+.glass{border:1px solid #6cf0a477;border-radius:18px;padding:13px;background:linear-gradient(135deg,#0c633c99,#063d2d88 55%,#0a3029aa);box-shadow:inset 0 1px 18px #9affc52b,0 8px 22px #001c1180;text-align:center;margin-top:12px;backdrop-filter:blur(12px)}.glass small{font-size:10px;color:#c4f7d8}.glass strong{display:block;color:#9dffc0;font-size:22px;text-shadow:0 0 12px #64ff9b55}
+.chart-card{border:1px solid #4bcb8b66;border-radius:18px;padding:12px;margin-top:12px;background:linear-gradient(145deg,#0b392b,#0a241f);box-shadow:inset 0 1px 15px #5eff9b18,0 8px 20px #0005}
+.chart-title{font-size:15px;font-weight:900;color:#baffd0;margin:0 0 10px}
+.chart-wrap{width:100%;overflow:hidden}.line-chart{width:100%;height:auto;display:block}.chart-legend{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;color:#d0f5dc;font-size:11px;font-weight:700;margin-top:7px}
+.chart-note{font-size:11px;color:#b4dfc2;text-align:center;margin-top:7px;line-height:1.8}
+.hidden{display:none!important}.foot{text-align:center;color:#658296;font-size:9px;margin:25px 0}.foot b{color:#a7d7e9;letter-spacing:1px}
+.nav{position:fixed;bottom:0;left:0;right:0;max-width:520px;margin:auto;display:flex;justify-content:space-around;padding:11px 10px calc(11px + env(safe-area-inset-bottom));background:#081521ed;backdrop-filter:blur(15px);border-top:1px solid #254459;z-index:5}.nav button{background:none;border:0;color:#85a3b6;font:500 10px Vazirmatn}.nav button span{display:block;font-size:19px;margin-bottom:2px}.nav button.sel{color:var(--cyan)}
+.price-actions{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}.mini-btn{border:1px solid #32657a;background:#102c3d;color:#bff5f0;border-radius:9px;padding:7px 9px;font:600 10px Vazirmatn;cursor:pointer}.offer-form{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:9px}.offer-form input{min-width:0;width:100%;border:1px solid #2b4e63;border-radius:9px;background:#081722;color:#f0fbff;padding:9px 8px;font:500 11px Vazirmatn}.offer-form button{grid-column:1/-1}.offer{border-top:1px solid #25465a;padding:8px 0;margin-top:7px;font-size:10px;color:#c9dce6}.offer strong{color:#9dffc0}.price-best{border:1px solid #56d99566;background:#0a3027;border-radius:11px;padding:9px;margin-top:8px;font-size:11px}.price-note{font-size:10px;color:#9db6c5;line-height:1.9}.price-summary{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}.price-summary>div{background:#0c2631;border:1px solid #2c6570;border-radius:12px;padding:10px;text-align:center}.price-summary b{display:block;color:#9dffc0;font-size:17px}
+.wallet-total{margin-top:14px;padding:17px 14px;border-radius:20px;border:1px solid #f4a45f;background:radial-gradient(circle at 15% 10%,#a65b2c 0,#49301f 42%,#222629 100%);box-shadow:0 7px 0 #171311,0 14px 24px #0009,inset 2px 2px 7px #ffffff25,inset -4px -5px 10px #0008;text-align:center;position:relative;overflow:hidden;animation:walletFloat 3.5s ease-in-out infinite}
+.wallet-total:before{content:"";position:absolute;inset:-50% auto auto -20%;width:150px;height:150px;border:1px solid #ffd2a455;border-radius:50%;box-shadow:0 0 0 15px #ffd2a411,0 0 0 30px #ffd2a408}
+.wallet-total .wallet-label{position:relative;color:#ffe0c5;font-size:12px;font-weight:800}.wallet-total strong{position:relative;display:block;margin:7px 0;color:#fff2d9;font-size:clamp(22px,7vw,30px);font-weight:900;text-shadow:0 2px 0 #713514,0 0 15px #ffb27477;direction:rtl}.wallet-total small{position:relative;color:#f4c49e;font-size:10px}.wallet-total .wallet-meta{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:8px;color:#ffe0c5;font-size:10px}@keyframes walletFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}@media(prefers-reduced-motion:reduce){.wallet-total{animation:none}}
+@media(min-width:600px){.app{padding-top:28px}.hero{padding:25px}.robot{font-size:90px}}
+
+/* FABSTEEL 3D DARK / ORANGE / GRAPHITE THEME */
+:root{--bg:#111315;--panel:#222629;--panel2:#2c3236;--line:#4b5358;--cyan:#f18a3b;--blue:#d66a2c;--muted:#b5aaa0;--white:#f5eee7;--gold:#ffc184}
+body{background:radial-gradient(ellipse at 50% -18%,#4a2b1b 0%,#202326 42%,#101214 100%);color:#f5eee7}
+.app{filter:drop-shadow(0 18px 22px #0008)}
+.logo{background:linear-gradient(145deg,#ffbd7a 0%,#e8782e 48%,#8d3f19 100%);border:1px solid #ffcb98;box-shadow:inset 2px 2px 4px #fff8,inset -4px -5px 9px #71381888,0 7px 0 #813e1e,0 13px 20px #0008;color:#fff8ef}
+.brand h1{color:#fff1e4;text-shadow:0 2px 0 #000}.brand small{color:#c1aaa0}
+.status{color:#ffc18e;border:1px solid #a95a2d;background:linear-gradient(145deg,#4a2b1b,#29201b);box-shadow:inset 0 1px 2px #fff2,0 3px 0 #572e1b,0 5px 10px #0008}
+.hero{border:1px solid #a95a2d;background:linear-gradient(145deg,#463022 0%,#292b2c 48%,#1b2023 100%);box-shadow:0 8px 0 #111416,0 16px 25px #0009,inset 2px 2px 5px #ffffff18,inset -5px -6px 12px #0008;color:#fff0e2}
+.hero h2{color:#ffe0c5;text-shadow:0 1px #000}.hero p{color:#cbb9aa}.hero:after{border-color:#e8782e44;box-shadow:0 0 0 17px #e8782e18,0 0 0 35px #e8782e0d}
+.hero-brand{background:linear-gradient(180deg,#fff4d9,#f2a65d 35%,#a94e20 72%,#f6c18b);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:.45px #fff0d5;text-shadow:0 2px 0 #7d421f,0 5px 12px #000}
+.hero-instagram{color:#f4c9a6;text-shadow:0 1px 2px #000}.hero-owner{background:linear-gradient(180deg,#fff0d5,#e18a45 48%,#87431f);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 2px 4px #000}
+.metric,.card,.chart-card,.glass,.listitem,.price-summary>div{background:linear-gradient(145deg,#303639 0%,#22272a 58%,#181c1f 100%);border:1px solid #555d61;box-shadow:0 6px 0 #101315,0 12px 18px #0008,inset 2px 2px 5px #ffffff12,inset -4px -5px 9px #0008;color:#f2e9e1}
+.metric span,.field label,.hint,.price-note,.listitem small{color:#c2b4a8}.metric strong{color:#ff9a50;text-shadow:0 1px 0 #000}.metric em{color:#c8b7aa}
+.tabs{padding:4px 2px 9px}.tab{background:linear-gradient(145deg,#343a3e,#202528);border:1px solid #596166;color:#d6c7ba;box-shadow:0 4px 0 #101315,0 7px 12px #0008,inset 1px 1px 3px #ffffff18}
+.tab.active{color:#fffaf2;background:linear-gradient(145deg,#f3a35e,#d56b2c 55%,#8f401b);border-color:#f7c18f;box-shadow:0 4px 0 #713514,0 8px 15px #0008,inset 1px 1px 3px #fff8}
+.card h3{color:#ffe0c5}.dot{background:#f18a3b;box-shadow:0 0 9px #f18a3b}
+.field input,.field select,.offer-form input{background:linear-gradient(145deg,#171b1e,#303639);border:1px solid #596166;color:#fff0e4;box-shadow:inset 3px 3px 7px #0009,inset -2px -2px 5px #ffffff12}
+.field input:focus,.field select:focus{border-color:#f18a3b;box-shadow:0 0 0 2px #f18a3b33,inset 2px 2px 5px #0008}.unit{color:#b8a79a}
+.btn{color:#fff9ef;background:linear-gradient(145deg,#f4a45f 0%,#dc7835 48%,#963f1b 100%);box-shadow:0 5px 0 #713514,0 9px 15px #0008,inset 1px 1px 3px #fff8,inset -2px -3px 5px #873c1e66;text-shadow:0 1px 2px #713818;transition:transform .15s,box-shadow .15s}
+.btn:active{transform:translateY(4px);box-shadow:0 1px 0 #713514,0 3px 7px #0008}.btn.secondary,.mini-btn{color:#ffe0c5;background:linear-gradient(145deg,#41484c,#252a2d);border:1px solid #666f74;box-shadow:0 3px 0 #111416,0 6px 10px #0008,inset 1px 1px 3px #ffffff18}
+.listitem{background:linear-gradient(145deg,#303639,#202528);border-color:#555d61}.listitemtop{color:#fff0e4}.remove{background:linear-gradient(145deg,#87412c,#51271e);color:#ffd2bd;box-shadow:0 2px 0 #2a1712}
+.glass{border-color:#c66a32;background:linear-gradient(145deg,#5a321e,#3d281e 55%,#29201c);box-shadow:0 5px 0 #21150f,0 9px 15px #0008,inset 2px 2px 5px #ffffff18,inset -4px -5px 9px #0008}.glass small{color:#f4c49e}.glass strong{color:#ffb274;text-shadow:0 2px 4px #000}
+.chart-card{background:linear-gradient(145deg,#303639,#202528 60%,#171b1e);border-color:#a95a2d}.chart-title{color:#ffb274}.chart-legend,.chart-note{color:#d2c1b4}.price-summary b{color:#ff9a50}
+.offer{color:#e5d5c8;border-color:#555d61}.offer strong{color:#ffae70}.price-best{background:linear-gradient(145deg,#4a2b1b,#30231c);border-color:#a95a2d;color:#ffe0c5}
+.nav{background:linear-gradient(180deg,#242a2eee,#111517f5);border-top:1px solid #50585d;box-shadow:0 -7px 20px #0008}.nav button{color:#c0b0a4;text-shadow:0 1px #000}.nav button.sel{color:#ff9a50}
+.foot{color:#a99a8e}.foot b{color:#ffad70}
+button,.tab,.mini-btn{transition:filter .15s,transform .15s}button:active,.tab:active,.mini-btn:active{filter:brightness(.97);transform:translateY(2px)}
+@media(hover:hover){.card,.metric,.chart-card{transition:transform .2s,box-shadow .2s}.card:hover,.metric:hover,.chart-card:hover{transform:translateY(-2px);box-shadow:0 8px 0 #101315,0 16px 22px #0009,inset 2px 2px 5px #ffffff12,inset -4px -5px 9px #0008}}
+@media print{ @page{size:A4;margin:5mm} html,body{background:#fff!important;color:#111!important;-webkit-print-color-adjust:exact;print-color-adjust:exact} body *{visibility:hidden!important} #list,#list *{visibility:visible!important} #list{display:block!important;position:absolute!important;top:0!important;left:0!important;right:0!important;width:100%!important;max-width:none!important;margin:0!important;padding:4mm!important;background:#fff!important;color:#111!important;box-sizing:border-box!important} #list .card{background:#fff!important;color:#111!important;border:0!important;box-shadow:none!important;padding:0!important} #list .card h3,#list .listitemtop,#list .listitem small,#list .chart-title,#list .chart-note{color:#111!important} #list .glass{background:#f5eee7!important;color:#111!important;box-shadow:none!important;border:1px solid #d97732!important} #list .glass small,#list .glass strong{color:#111!important;text-shadow:none!important} #list .chart-card,#list .listitem{background:#fff!important;color:#111!important;box-shadow:none!important;border:1px solid #bbb!important;break-inside:avoid} #list .btnrow,.remove,.nav,.tabs,.top,.hero,.metrics,.foot{display:none!important} #list .listitem{break-inside:avoid} }
+
+
+/* FABSTEEL animated launch + integrated engineering dashboard */
+#launchScreen{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#080d13;transition:opacity .75s ease,visibility .75s ease}
+#launchScreen.leaving{opacity:0;visibility:hidden;pointer-events:none}
+.launch-art{position:absolute;inset:0;background-image:linear-gradient(180deg,#050a12aa 0%,#050a1230 42%,#050a12dd 100%),url('./fabsteel-city-poster.jpg');background-size:cover;background-position:center 38%;transform:scale(1.04);animation:launchZoom 7s ease-in-out infinite alternate}
+.launch-frame{position:absolute;inset:12px;border:1px solid #f18a3b;border-radius:25px;box-shadow:inset 0 0 22px #f18a3b22,0 0 20px #f18a3b44;pointer-events:none}
+.launch-frame:before,.launch-frame:after{content:"";position:absolute;width:30%;height:4px;background:linear-gradient(90deg,transparent,#ffb36e,transparent);filter:drop-shadow(0 0 8px #ff8b38);animation:edgeSweep 4s linear infinite}
+.launch-frame:before{top:-2px;right:8%}.launch-frame:after{bottom:-2px;left:8%;animation-delay:2s}
+.launch-content{position:relative;z-index:2;width:min(90%,460px);margin-top:auto;margin-bottom:max(35px,env(safe-area-inset-bottom));text-align:center;padding:20px 18px 18px;border:1px solid #f18a3b88;border-radius:23px;background:linear-gradient(145deg,#121b24dd,#090f17ee);backdrop-filter:blur(12px);box-shadow:0 16px 45px #000b,inset 0 1px 0 #ffffff22;animation:riseIn .9s cubic-bezier(.2,.8,.2,1) both}
+.launch-title{font:1000 clamp(38px,11vw,58px)/1 Arial,sans-serif;direction:ltr;letter-spacing:1px;background:linear-gradient(180deg,#fff4dc,#ffb36d 40%,#b64d1d 78%,#ffe0b7);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 5px 18px #0009;filter:drop-shadow(0 0 12px #f18a3b55)}
+.launch-sub{font-size:12px;color:#f6d4b6;margin:8px 0 12px;letter-spacing:.3px}.launch-credit{font-size:11px;color:#f4a86d;margin:0 0 15px}
+.launch-enter{border:1px solid #ffd0a1;border-radius:14px;padding:12px 25px;color:#fff8ef;font:800 13px Vazirmatn,sans-serif;background:linear-gradient(145deg,#ffad66,#d66a2c 60%,#8c3c1a);box-shadow:0 5px 0 #6f3218,0 10px 22px #0009,inset 1px 1px 3px #fff8;cursor:pointer;animation:softPulse 2s ease-in-out infinite}
+.launch-hint{font-size:9px;color:#c4b1a1;margin-top:12px}
+@keyframes launchZoom{from{transform:scale(1.04) translateY(0)}to{transform:scale(1.13) translateY(-1.2%)}}
+@keyframes edgeSweep{0%{transform:translateX(-120%);opacity:0}20%,80%{opacity:1}100%{transform:translateX(350%);opacity:0}}
+@keyframes riseIn{from{opacity:0;transform:translateY(28px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes softPulse{0%,100%{box-shadow:0 5px 0 #6f3218,0 10px 22px #0009,0 0 0 0 #f18a3b00}50%{box-shadow:0 5px 0 #6f3218,0 10px 22px #0009,0 0 0 7px #f18a3b20}}
+.home-banner{position:relative;overflow:hidden;border:1px solid #b96835;border-radius:20px;min-height:178px;margin:0 0 14px;background:#101820;box-shadow:0 7px 0 #101315,0 14px 22px #0009,inset 0 1px 0 #fff2}
+.home-banner > img:first-child{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 38%;opacity:.72;animation:bannerDrift 9s ease-in-out infinite alternate,robotFloat 4s ease-in-out infinite}
+.home-banner:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#10182008 0%,#10182055 45%,#101820ee 100%),linear-gradient(0deg,#101820cc,transparent 75%)}
+.home-banner img.home-logo-motion{position:absolute;z-index:2;top:12px;right:14px;left:auto;bottom:auto;width:76px;height:76px;object-fit:cover;opacity:1;border-radius:50%;border:2px solid #f5a45d;box-shadow:0 0 0 4px #f18a3b33,0 0 22px #ff9b45aa;animation:fabLogoFloat 3.2s ease-in-out infinite,logoGlow 2.8s ease-in-out infinite alternate;}
+@keyframes logoGlow{from{filter:brightness(.95) drop-shadow(0 0 4px #f18a3b88)}to{filter:brightness(1.2) drop-shadow(0 0 14px #ffb36e)}}
+.home-banner-copy{position:relative;z-index:1;padding:22px 18px;min-height:178px;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start}
+.home-banner-copy b{font:1000 31px Arial,sans-serif;direction:ltr;color:#ffad69;text-shadow:0 2px 12px #000}
+.home-banner-copy span{font-size:12px;color:#fff0e2;text-shadow:0 2px 8px #000;margin-top:5px}
+.home-banner-copy small{font-size:10px;color:#ffc18e;margin-top:9px}
+@keyframes bannerDrift{from{transform:scale(1.02) translateX(0)}to{transform:scale(1.10) translateX(1.5%)}}
+.home-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0 16px}
+.home-action{min-height:92px;border:1px solid #9b613e;border-radius:17px;padding:13px 11px;text-align:right;color:#fff0e4;background:linear-gradient(145deg,#3a4144,#22272a 58%,#171b1e);box-shadow:0 5px 0 #101315,0 10px 15px #0008,inset 1px 1px 3px #ffffff18;cursor:pointer;font:700 12px Vazirmatn;transition:transform .18s,filter .18s}
+.home-action:active{transform:translateY(4px);filter:brightness(1.15)}.home-action .ico{display:block;font-size:24px;margin-bottom:7px;filter:drop-shadow(0 0 7px #f18a3b66)}.home-action small{display:block;color:#c6b5a8;font-size:9px;font-weight:400;margin-top:4px}
+.home-section-title{font-size:13px;color:#ffd2ad;margin:14px 2px 8px;font-weight:800}
+@media(prefers-reduced-motion:reduce){.launch-art,.launch-frame:before,.launch-frame:after,.launch-content,.launch-enter,.home-banner img{animation:none!important}#launchScreen{transition:none}}
+@media print{#launchScreen{display:none!important}}
+.report-meta{display:flex;flex-direction:column;gap:4px;margin:0 0 12px;padding:10px 12px;border:1px solid #bd7546;border-radius:12px;background:linear-gradient(135deg,#fff4e8,#f2ddca);color:#4c2d1b;font-size:10px;line-height:1.8}
+.report-meta b{font-size:14px;color:#8d431c}
+.report-meta strong{font-variant-numeric:tabular-nums}
+@media print{.report-meta{display:flex!important;background:#fff!important;border:1px solid #999!important;color:#111!important;border-radius:0!important;margin-bottom:10px!important;padding:7px!important}.report-meta b{color:#111!important}}
+
+
+
+/* Theme switch: warm cream/orange light mode + graphite/orange dark mode */
+.head-tools{display:flex;align-items:center;gap:7px;flex-wrap:wrap;justify-content:flex-end}
+.theme-toggle{border:1px solid #d98a51;border-radius:12px;padding:7px 9px;background:linear-gradient(145deg,#fff0dc,#e8a46d);color:#663719;font:800 10px Vazirmatn;box-shadow:0 3px 0 #a85c2b,0 6px 12px #0003;white-space:nowrap}
+.home-banner > img:first-child{animation:bannerDrift 9s ease-in-out infinite alternate,robotFloat 4s ease-in-out infinite}
+.home-banner:before{content:"";position:absolute;z-index:1;inset:0;background:linear-gradient(110deg,transparent 25%,#ffb36e20 48%,transparent 68%);transform:translateX(-100%);animation:robotScan 6s ease-in-out infinite;pointer-events:none}
+@keyframes robotFloat{0%,100%{filter:brightness(.96);transform:scale(1.02) translateY(0)}50%{filter:brightness(1.12);transform:scale(1.09) translateY(-5px)}}
+@keyframes robotScan{0%,25%{transform:translateX(-110%)}70%,100%{transform:translateX(110%)}}
+body[data-theme="light"]{background:radial-gradient(ellipse at 50% -15%,#fff7eb 0%,#f5e4d1 48%,#ead3bd 100%);color:#432b1c}
+body[data-theme="light"] .brand h1{color:#713d20;text-shadow:none}body[data-theme="light"] .brand small{color:#946b50}
+body[data-theme="light"] .logo{color:#fff;background:linear-gradient(145deg,#ffc98d,#e77d32 55%,#a84b1d);border-color:#ffd4a8}
+body[data-theme="light"] .status{background:linear-gradient(145deg,#fff0df,#f5d2b2);color:#914819;border-color:#d99a68;box-shadow:0 3px 0 #d5a17c}
+body[data-theme="light"] .hero,body[data-theme="light"] .card{background:linear-gradient(145deg,#fffaf3,#f1dfcd);border-color:#d9ad88;color:#50331f;box-shadow:0 9px 20px #81502a20,inset 0 1px 0 #fff}
+body[data-theme="light"] .hero p,body[data-theme="light"] .hint,body[data-theme="light"] .metric span,body[data-theme="light"] .unit,body[data-theme="light"] .field label{color:#88684f}
+body[data-theme="light"] .metric{background:linear-gradient(145deg,#fff8ef,#ecd5bf);border-color:#d7ad88;box-shadow:0 5px 12px #87512b18}
+body[data-theme="light"] .metric strong{color:#bd5d22}body[data-theme="light"] .metric em{color:#8e694e}
+body[data-theme="light"] .tabs .tab{background:#f6e5d4;border-color:#d9ad88;color:#805332}
+body[data-theme="light"] .tabs .tab.active{background:linear-gradient(135deg,#ffbd7b,#e87932);color:#fff;border-color:#e87932;box-shadow:0 5px 14px #d66a2c33}
+body[data-theme="light"] .field input,body[data-theme="light"] .field select,body[data-theme="light"] .offer-form input{background:#fffaf5;color:#4b3020;border-color:#d6ad8d}
+body[data-theme="light"] .btn{background:linear-gradient(135deg,#ffbd7b,#e87932 70%,#b94e1d);color:#fff8ef;box-shadow:0 5px 0 #a94d21,0 8px 15px #a94d2128}
+body[data-theme="light"] .btn.secondary,body[data-theme="light"] .mini-btn{background:#f7dfc9;color:#78421f;border-color:#d9a477}
+body[data-theme="light"] .listitem{background:#fff9f2;border-color:#dfb996;color:#53351f}
+body[data-theme="light"] .listitem small,body[data-theme="light"] .offer,body[data-theme="light"] .price-note{color:#88684f}
+body[data-theme="light"] .nav{background:#fff0e1ed;border-color:#d7a77f;box-shadow:0 -5px 18px #81502a18}
+body[data-theme="light"] .nav button{color:#956b4c}body[data-theme="light"] .nav button.sel{color:#d76525}
+body[data-theme="light"] .price-summary>div{background:#fff8f0;border-color:#ddb28e}body[data-theme="light"] .price-summary b{color:#bd5d22}
+body[data-theme="light"] .price-best{background:#fff0df;border-color:#d99a68;color:#623b20}
+body[data-theme="light"] .wallet-total{background:radial-gradient(circle at 15% 10%,#ffbf7d 0,#e88b49 43%,#b95b2b 100%);border-color:#ffcf9d;box-shadow:0 7px 0 #a64d22,0 14px 24px #8c4c2a33,inset 2px 2px 7px #fff8}
+body[data-theme="light"] .wallet-total .wallet-label,body[data-theme="light"] .wallet-total strong,body[data-theme="light"] .wallet-total small,body[data-theme="light"] .wallet-total .wallet-meta{color:#fff8ef}
+body[data-theme="light"] .chart-card{background:linear-gradient(145deg,#fff1e2,#f4dfcb);border-color:#dba77b}
+body[data-theme="light"] .chart-title,body[data-theme="light"] .chart-note,body[data-theme="light"] .chart-legend{color:#704626}
+body[data-theme="light"] .home-action{background:linear-gradient(145deg,#fff5e9,#f0d8c2 60%,#e8c6a7);border-color:#d59a6b;color:#643b20;box-shadow:0 5px 0 #c38a5e,0 10px 15px #81502a20,inset 1px 1px 3px #fff}
+body[data-theme="light"] .home-action small{color:#8d6548}body[data-theme="light"] .home-section-title{color:#a7501f}
+body[data-theme="light"] .foot{color:#99765d}
+@media(prefers-reduced-motion:reduce){.home-banner img,.home-banner:before{animation:none!important}}
+
+
+/* FREEMIUM / PRO ACCESS */
+.plan-card{border:1px solid #c8793d;border-radius:18px;padding:14px;margin:12px 0;background:linear-gradient(135deg,#4b2c1d,#25282a);box-shadow:inset 0 1px 0 #ffffff18,0 8px 20px #0006}.plan-head{display:flex;justify-content:space-between;align-items:center;gap:8px}.plan-head b{font-size:14px;color:#ffe0c4}.plan-badge{font-size:10px;border-radius:30px;padding:5px 9px;background:#7c4526;color:#ffe2c9;border:1px solid #d78b55}.plan-card p{font-size:10px;line-height:1.9;color:#e1c5b0;margin:8px 0}.plan-actions{display:flex;gap:8px}.plan-actions button{flex:1;border:1px solid #d88951;background:linear-gradient(135deg,#ffbd7a,#df752f);color:#321b0e;border-radius:10px;padding:9px;font:800 11px Vazirmatn}.plan-actions button.secondary{background:#292d30;color:#ffd4b3}.pro-lock{position:relative}.pro-lock:after{content:'🔒 نسخه حرفه‌ای';position:absolute;inset:0;display:grid;place-items:center;background:#111315df;color:#ffd2ad;font:800 13px Vazirmatn;border:1px dashed #e58b4c;border-radius:12px;backdrop-filter:blur(3px)}.license-backdrop{position:fixed;inset:0;background:#000b;z-index:30;display:none;align-items:center;justify-content:center;padding:18px}.license-backdrop.open{display:flex}.license-modal{width:min(100%,420px);background:linear-gradient(145deg,#302a26,#171a1c);border:1px solid #d98245;border-radius:20px;padding:18px;box-shadow:0 20px 60px #000b}.license-modal h3{margin:0 0 8px;color:#ffcfaa;font-size:17px}.license-modal p{font-size:11px;line-height:1.9;color:#d3b9a6}.license-modal input{width:100%;padding:12px;border-radius:10px;border:1px solid #9c623e;background:#111;color:#fff;font:13px Vazirmatn;direction:ltr;text-align:center;margin:8px 0}.license-modal .close-license{width:100%;margin-top:8px;background:#343638;color:#eee;border:1px solid #555;border-radius:10px;padding:10px;font:600 11px Vazirmatn}
+
+
+.wallet-breakdown{margin-top:10px;border:1px solid #a95a2d;border-radius:16px;padding:11px;background:linear-gradient(145deg,#292e31,#171b1e);box-shadow:0 5px 0 #101315,0 10px 18px #0007,inset 1px 1px 4px #ffffff12;overflow:hidden}
+.wallet-line{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 3px;border-bottom:1px solid #ffffff18;animation:priceLineIn .45s ease both}
+.wallet-line:last-child{border-bottom:0}.wallet-line b{display:block;color:#ffe0c5;font-size:11px}.wallet-line small{display:block;color:#c2b4a8;font-size:9px;margin-top:4px}.wallet-line strong{color:#ffad70;font-size:11px;white-space:nowrap}
+.price-item-motion{animation:priceLineIn .5s ease both}
+@keyframes priceLineIn{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){.price-item-motion,.wallet-line{animation:none}}
+
+
+/* Official FabSteel emblem: animated app icon and report identity */
+.logo{width:54px;height:54px;flex:0 0 54px;border-radius:50%;overflow:hidden;padding:0;background:#080808;border:2px solid #e9a13c;box-shadow:0 0 0 2px #5c351d,0 0 18px #f18a3b66;animation:fabLogoPulse 3.2s ease-in-out infinite}
+.logo img{width:100%;height:100%;display:block;object-fit:cover;border-radius:50%}
+@keyframes fabLogoPulse{0%,100%{box-shadow:0 0 0 2px #5c351d,0 0 12px #f18a3b55;filter:brightness(.98)}50%{box-shadow:0 0 0 3px #f2bd70,0 0 24px #ff9b38aa;filter:brightness(1.12)}}
+.home-banner img.home-logo-motion{position:absolute!important;z-index:2!important;inset:auto!important;left:13px!important;top:13px!important;right:auto!important;bottom:auto!important;width:76px!important;height:76px!important;border-radius:50%;object-fit:cover!important;opacity:1!important;border:2px solid #e7a34f;box-shadow:0 0 0 3px #1b120b,0 0 22px #ff9b38aa;animation:fabLogoFloat 3.4s ease-in-out infinite, fabLogoPulse 3.2s ease-in-out infinite}
+@keyframes fabLogoFloat{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-5px) rotate(1deg)}}
+.report-meta{border:2px solid #b86a32!important;border-radius:14px!important;padding:12px!important;background:linear-gradient(135deg,#fffaf4,#f7e6d5)!important;color:#34251b!important;box-shadow:inset 0 0 0 3px #f0d0b0}
+.report-brand{display:flex;align-items:center;gap:12px;padding-bottom:10px;border-bottom:1px solid #d8b18e}
+.report-brand img{width:82px;height:82px;object-fit:cover;border-radius:50%;border:2px solid #b86a32;box-shadow:0 2px 8px #8a4a2533}
+.report-brand div{display:flex;flex-direction:column;gap:4px}
+.report-brand b{font-size:15px;color:#713918}
+.report-brand span{font-size:10px;color:#654b3a}
+.report-price-summary{margin-top:10px;padding:10px 12px;border:1px solid #c67a42;border-radius:10px;background:linear-gradient(135deg,#fff0df,#f3d4b8);display:flex;flex-direction:column;gap:4px}
+.report-price-summary span{font-size:10px;color:#6f4329;font-weight:700}
+.report-price-summary strong{font-size:19px;color:#9b471c;font-weight:900}
+.report-price-summary small{font-size:9px;color:#76563f}
+@media print{
+  #list{border:2px solid #b86a32!important;padding:4mm!important;width:100%!important;max-width:none!important;box-sizing:border-box!important}
+  #list .card{border:0!important}
+  #list .report-meta{display:block!important;break-inside:avoid!important;margin-bottom:12px!important}
+  #list .report-brand img{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+  #list .report-price-summary{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+}
+@media(prefers-reduced-motion:reduce){.logo,.home-banner img.home-logo-motion{animation:none!important}}
+
+.weight-split-card{background:linear-gradient(145deg,#242a2d,#171b1e 70%,#30251e)!important;border-color:#b96835!important}
+.weight-split-capsule{height:31px;position:relative;display:flex;overflow:hidden;border-radius:999px;border:1px solid #f4bd82aa;background:linear-gradient(180deg,#101518,#30383b);box-shadow:inset 0 4px 9px #000c,inset 0 -2px 5px #ffffff22,0 5px 12px #0008;margin:13px 2px 10px}
+.weight-split-capsule>span{height:100%;display:block;transition:width .65s cubic-bezier(.2,.8,.2,1)}
+.split-sheet{background:linear-gradient(180deg,#fff0a6 0%,#ff9b25 35%,#bd4b0c 72%,#ffcf70 100%);box-shadow:inset 0 2px 5px #fff9,0 0 13px #ff8b22aa}
+.split-profile{background:linear-gradient(180deg,#e7f7ff 0%,#72c9e9 35%,#246a8c 72%,#b7f1ff 100%);box-shadow:inset 0 2px 5px #fff9,0 0 13px #45bde9aa}
+.weight-split-capsule>span{position:relative;overflow:hidden;background-size:220% 100%;animation:moltenFlow 3.2s linear infinite}
+.split-sheet{background-image:linear-gradient(180deg,#fff4b8 0%,#ff9b25 28%,#b84208 66%,#ffcf70 100%)}
+.split-profile{background-image:linear-gradient(180deg,#e7f7ff 0%,#72c9e9 30%,#1c6488 68%,#b7f1ff 100%);animation-delay:-1.4s}
+.weight-split-capsule>span:after{content:"";position:absolute;inset:-35% auto -35% -45%;width:35%;transform:skewX(-22deg);background:linear-gradient(90deg,transparent,#ffffffa8,transparent);filter:blur(2px);animation:moltenGlide 2.8s ease-in-out infinite}
+.split-profile:after{animation-delay:-1.2s}
+@keyframes moltenFlow{0%{background-position:0% 50%;filter:brightness(.94)}50%{filter:brightness(1.22)}100%{background-position:220% 50%;filter:brightness(.94)}}
+@keyframes moltenGlide{0%,12%{left:-45%;opacity:0}35%{opacity:.9}75%,100%{left:120%;opacity:0}}
+.weight-split-capsule{box-shadow:inset 0 4px 9px #000c,inset 0 -2px 5px #ffffff22,0 0 0 1px #ffffff20,0 5px 12px #0008}
+.split-glint{position:absolute;inset:2px 0 auto;height:7px;border-radius:99px;background:linear-gradient(90deg,transparent,#ffffff80,transparent);opacity:.7;pointer-events:none}
+.weight-split-legend{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;color:#f4e5d7;font-size:11px;font-weight:800}
+.weight-split-legend span{display:flex;align-items:center;gap:5px}
+.weight-split-legend i{display:inline-block;width:10px;height:10px;border-radius:50%;box-shadow:0 0 8px currentColor}
+.legend-sheet{background:#ff9b25;color:#ff9b25}.legend-profile{background:#72c9e9;color:#72c9e9}
+
+/* Full printable A4 width fix */
+
+@media print{
+  html,body{width:100%!important;min-width:0!important;margin:0!important;padding:0!important}
+  .app{width:100%!important;max-width:none!important;margin:0!important;padding:0!important}
+  #list{width:100%!important;max-width:none!important;left:0!important;right:0!important;padding:4mm!important}
+  #list .card{width:100%!important;max-width:none!important}
+  #list .grid2{grid-template-columns:1fr 1fr!important}
+  #list .chart-card{width:100%!important}
+  #list .weight-split-card{break-inside:avoid!important}
+}
+
+</style></head>
+<body>
+<div id="launchScreen" aria-label="صفحه آغازین FabSteel">
+  <div class="launch-art"></div><div class="launch-frame"></div>
+  <div class="launch-content"><div class="launch-title">FabSteel</div><div class="launch-sub">Steel Structure Engineering Software</div><div class="launch-credit">مهندسی هوشمند · Eng. Davod Bagheri</div><div class="launch-hint">تقدیم به جامعه مهندسی ایران</div><button class="launch-enter" onclick="enterFabSteel()">ورود به نرم‌افزار <span aria-hidden="true">←</span></button><div class="launch-hint">محاسبات آفلاین · ابزار تخصصی سازه‌های فلزی</div></div>
+</div>
+<main class="app">
+<header class="top"><div class="brand"><div class="logo"><img src="./fabsteel-logo.gif" alt="لوگوی رسمی FabSteel" decoding="async"></div><div><h1>FabSteel</h1><small>SMART ENGINEERING SYSTEM</small></div></div><div class="head-tools"><button class="theme-toggle" id="themeToggle" type="button" onclick="toggleTheme()" aria-label="تغییر پوسته">☀️ حالت روشن</button><div class="status">● محاسبات آفلاین</div></div></header>
+<section class="home-banner"><img src="./fabsteel-city-poster.jpg" alt="ربات مهندس FabSteel در کنار سازه فلزی" fetchpriority="high" decoding="async"><img class="home-logo-motion" src="./fabsteel-logo.gif" alt="نشان متحرک FabSteel"><div class="home-banner-copy"><b>FabSteel</b><span>مهندسی هوشمند، محاسبات دقیق سازه فلزی</span><small>Developed by Eng. Davod Bagheri</small></div></section>
+<section class="metrics"><div class="metric"><span>وزن کل محاسبات</span><strong id="totalWeight">0.00</strong><em>کیلوگرم</em></div><div class="metric"><span>تعداد اقلام ثبت‌شده</span><strong id="itemCount">0</strong><em>ردیف متریال</em></div></section>
+<div class="tabs"><button class="tab active" data-tab="home">خانه</button><button class="tab" data-tab="sheet">ورق شیت</button><button class="tab" data-tab="profile">پروفیل‌ها</button><button class="tab" data-tab="list">لیست محاسبات</button><button class="tab" data-tab="price">استعلام قیمت</button></div>
+<section id="home" class="pane">
+<div class="plan-card" id="planCard"><div class="plan-head"><b>دسترسی FabSteel</b><span class="plan-badge" id="planBadge">رایگان دائمی</span></div><p id="planDescription">تمام امکانات این نسخه بدون مهلت آزمایشی و بدون نیاز به لایسنس فعال است. تقدیم به جامعه مهندسی ایران.</p><div class="plan-actions"><button type="button" class="secondary" onclick="showPlanDetails()">امکانات نسخه رایگان</button></div></div>
+<div class="home-section-title">دسترسی سریع به ابزارهای مهندسی</div>
+<div class="home-grid">
+<button class="home-action" onclick="switchTab('sheet')"><span class="ico">▤</span>محاسبه ورق و شیت<small>وزن، ابعاد و تعداد</small></button>
+<button class="home-action" onclick="switchTab('profile')"><span class="ico">⌑</span>پروفیل و جدول اشتال<small>مقاطع و سطح مقطع</small></button>
+<button class="home-action" onclick="switchTab('list')"><span class="ico">▦</span>لیست متریال<small>جمع وزن و سطح مقطع</small></button>
+<button class="home-action" onclick="switchTab('price')"><span class="ico">◈</span>استعلام قیمت<small>جستجو و ثبت پیشنهاد</small></button>
+<button class="home-action" onclick="switchTab('list');setTimeout(exportPDF,150)"><span class="ico">▧</span>گزارش PDF<small>چاپ و ذخیره گزارش پروژه</small></button>
+<button class="home-action" onclick="showOfflineInfo()"><span class="ico">⚙</span>اطلاعات نرم‌افزار<small>حالت آفلاین و سازنده</small></button>
+</div><div class="card"><h3><i class="dot"></i> محیط مهندسی FabSteel</h3><p class="hint">برای شروع، نوع متریال را انتخاب کنید. اطلاعات محاسبات روی همین دستگاه ذخیره می‌شود و برای محاسبه وزن و سطح مقطع به اینترنت نیاز ندارید.</p></div>
+</section>
+<section id="sheet" class="pane hidden">
+<div class="card"><h3><i class="dot"></i> محاسبه وزن ورق شیت</h3><div class="grid2">
+<div class="field"><label>ضخامت</label><input id="thick" type="number" min="0" step="0.1" value="6"><div class="unit">میلی‌متر</div></div>
+<div class="field"><label>عرض</label><input id="width" type="number" min="0" value="1250"><div class="unit">میلی‌متر</div></div>
+<div class="field"><label>طول</label><input id="length" type="number" min="0" value="2500"><div class="unit">میلی‌متر</div></div>
+<div class="field"><label>تعداد</label><input id="qty" type="number" min="1" value="1"><div class="unit">عدد</div></div></div><button class="btn" onclick="addSheet()">＋ افزودن ورق به لیست</button><p class="hint">محاسبه بر اساس چگالی فولاد ۷۸۵۰ کیلوگرم بر مترمکعب انجام می‌شود.</p></div></section>
+<section id="profile" class="pane hidden"><div class="card"><h3><i class="dot"></i> محاسبه وزن پروفیل</h3>
+<div class="field"><label>نوع پروفیل</label><select id="ptype" onchange="updateSizes()">
+<option value="ipe">تیرآهن IPE</option><option value="hea">تیرآهن HEA</option><option value="heb">تیرآهن HEB</option><option value="angle">نبشی</option><option value="box">قوطی / باکس</option><option value="channel">ناودانی</option><option value="pipe">لوله</option><option value="rebar">میلگرد</option><option value="z">پروفیل Z</option></select></div>
+<div class="field" id="profileSizeField"><label>سایز استاندارد / جدول اشتال</label><select id="psize"><option value="">ابتدا نوع پروفیل را انتخاب کنید</option></select></div>
+<div id="profileDynamicFields"></div>
+<div class="grid2"><div class="field"><label>طول هر قطعه (میلی‌متر)</label><input id="plen" type="number" min="1" step="any" value="6000"></div><div class="field"><label>تعداد</label><input id="pqty" type="number" min="1" step="1" value="1"></div></div>
+<button class="btn" onclick="addProfile()">＋ افزودن به لیست</button>
+<p class="hint" id="profileCalcHint">مبنای مقاطع نوردی: جداول DIN EN 10365؛ ورق: ضخامت × عرض؛ قوطی و لوله: روابط مقطع در EN 10219-2:2019. سطح مقطع هر قلم در تعداد ضرب و در جمع کل منظور می‌شود.</p></div></section>
+<section id="list" class="pane hidden"><div class="card"><h3><i class="dot"></i> لیست محاسبات پروژه</h3><div class="report-meta" id="reportMeta">
+<div class="report-brand"><img src="./fabsteel-logo.gif" alt="لوگوی FabSteel"><div><b>گزارش مهندسی و برآورد متریال FabSteel</b><span>سازنده: Eng. Davod Bagheri · @fabsteel_9191</span><span>تاریخ و ساعت تهیه گزارش: <strong id="reportDateTime">—</strong></span></div></div>
+<div class="report-price-summary"><span>قیمت تمام‌شده اقلام قیمت‌گذاری‌شده</span><strong id="reportPriceTotal">۰ تومان</strong><small id="reportPriceStatus">قیمت اقلام ثبت‌نشده در جمع لحاظ نشده است.</small></div>
+</div><div id="items"><p class="hint">هنوز موردی به لیست اضافه نشده است.</p></div><p class="hint" id="areaAuditNote" aria-live="polite">مجموع سطح مقطع پس از ثبت متریال نمایش داده می‌شود.</p><div class="grid2">
+<div class="glass"><small>وزن کل پروفیل‌ها و ورق‌ها</small><strong id="listTotalWeight">۰ kg</strong></div>
+<div class="glass"><small>مجموع سطح مقطع تأییدشده تمام متریال</small><strong id="totalArea">۰ mm²</strong><small id="totalAreaM2">۰ m²</small></div>
+</div>
+
+<div class="chart-card weight-split-card">
+  <h4 class="chart-title">سهم وزنی ورق شیت و پروفیل</h4>
+  <div id="weightSplitCapsule" class="weight-split-capsule" role="img" aria-label="درصد وزن ورق شیت و پروفیل">
+    <span class="split-sheet" style="width:0%"></span><span class="split-profile" style="width:0%"></span>
+    <i class="split-glint"></i>
+  </div>
+  <div class="weight-split-legend">
+    <span><i class="legend-sheet"></i> ورق شیت: <b id="sheetWeightPercent">۰٪</b></span>
+    <span><i class="legend-profile"></i> پروفیل: <b id="profileWeightPercent">۰٪</b></span>
+  </div>
+  <div class="chart-note" id="weightSplitNote">پس از افزودن متریال، درصد سهم وزنی هر گروه نمایش داده می‌شود.</div>
+</div>
+
+<div class="chart-card"><h4 class="chart-title">نمودار خطی وزن پروفیل‌ها و اقلام</h4><div class="chart-wrap" id="weightChart"></div><div class="chart-legend"><span>━ وزن هر ردیف (kg)</span></div><div class="chart-note">محور افقی: ردیف اقلام · محور عمودی: وزن برحسب کیلوگرم</div></div>
+<div class="chart-card"><h4 class="chart-title">نمودار خطی روند وزن کل و سطح مقطع</h4><div class="chart-wrap" id="summaryChart"></div><div class="chart-legend"><span>━ وزن تجمعی (kg)</span><span>━ سطح مقطع تجمعی (%)</span></div><div class="chart-note">هر نقطه، مجموع اقلام تا همان ردیف را نشان می‌دهد.</div></div>
+<div class="btnrow"><button class="btn secondary" onclick="exportPDF()">خروجی PDF</button><button class="btn secondary" onclick="clearItems()">پاک‌کردن لیست</button></div></div></section>
+
+
+<section id="price" class="pane hidden">
+<div class="card">
+<h3><i class="dot"></i> استعلام قیمت متریال پروژه</h3>
+<div class="price-summary">
+<div><span class="price-note">تعداد اقلام قابل استعلام</span><b id="priceItemCount">۰</b></div>
+<div><span class="price-note">تعداد پیشنهادهای ثبت‌شده</span><b id="offerCount">۰</b></div>
+</div>
+<p class="price-note">اقلام به‌صورت خودکار از لیست محاسبات دریافت می‌شوند. متریال را در ترب یا باسلام جستجو کنید، قیمت هر کیلوگرم را وارد کنید و پیشنهاد را ثبت کنید. مبلغ کل هر ردیف بر اساس وزن آن محاسبه می‌شود.</p>
+<div id="priceItems"><p class="hint">ابتدا ورق یا پروفیل به لیست محاسبات اضافه کنید.</p></div>
+<div class="wallet-total" aria-live="polite"><div class="wallet-label">◈ کیف پول برآورد قیمت کل اقلام ◈</div><strong id="walletGrandTotal">۰ تومان</strong><small id="walletStatus">پس از ثبت قیمت اقلام، جمع کل نمایش داده می‌شود.</small><div class="wallet-meta"><span id="walletPricedCount">۰ قلم قیمت‌گذاری‌شده</span><span id="walletMissingCount">۰ قلم بدون قیمت</span></div></div>
+<div class="wallet-breakdown" id="walletBreakdown" aria-live="polite"><p class="hint">پس از ثبت قیمت هر کیلو، جزئیات مبلغ اقلام در این قسمت نمایش داده می‌شود.</p></div>
+</div>
+</section>
+<footer class="foot">FABSTEEL · <b>Programer Eng. Davod Bagheri</b><br><b>تقدیم به جامعه مهندسی ایران</b></footer></main>
+<nav class="nav"><button class="sel" onclick="switchTab('home',this)"><span>⌂</span>خانه</button><button onclick="switchTab('sheet',this)"><span>▦</span>ورق</button><button onclick="switchTab('profile',this)"><span>⌑</span>پروفیل</button><button onclick="switchTab('list',this)"><span>▤</span>لیست</button><button onclick="switchTab('price',this)"><span>◈</span>قیمت</button></nav>
+<script>
+// نسخه رایگان دائمی؛ تمام ابزارها و قابلیت‌ها بدون محدودیت فعال هستند.
+let items=[];try{const savedItems=JSON.parse(localStorage.getItem('fabsteel_items')||'[]');items=Array.isArray(savedItems)?savedItems:[]}catch(e){items=[];}
+const STEEL_DENSITY=7850;
+function isPro(){return true;}
+function trialActive(){return false;}
+function requirePro(){return true;}
+function canAddMaterial(){return true;}
+function refreshPlanCard(){const badge=document.getElementById('planBadge'),desc=document.getElementById('planDescription');if(badge)badge.textContent='رایگان دائمی';if(desc)desc.textContent='تمام امکانات بدون محدودیت و بدون نیاز به فعال‌سازی؛ تقدیم به جامعه مهندسی ایران.';}
+function showPlanDetails(){alert('FabSteel — نسخه رایگان دائمی\nتمام امکانات محاسبات، ثبت نامحدود متریال، خروجی PDF و استعلام/ثبت قیمت در دسترس است.\nتقدیم به جامعه مهندسی ایران.');}
+
+function getDeviceId(){let id=localStorage.getItem('fabsteel_device_id');if(!id){id='FS-'+(crypto.randomUUID?crypto.randomUUID():Date.now()+'-'+Math.random().toString(36).slice(2));localStorage.setItem('fabsteel_device_id',id);}return id;}
+
+function switchTab(id,el){if(id==='price'&&!requirePro('استعلام قیمت'))return;document.querySelectorAll('.pane').forEach(x=>x.classList.add('hidden'));const pane=document.getElementById(id);if(pane)pane.classList.remove('hidden');document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x.dataset.tab===id));document.querySelectorAll('.nav button').forEach(x=>{x.classList.remove('sel');const m=(x.getAttribute('onclick')||'').match(/switchTab\('([^']+)'/);if(m&&m[1]===id)x.classList.add('sel')});if(el)el.classList.add('sel');window.scrollTo({top:0,behavior:'smooth'});}
+function enterFabSteel(){const s=document.getElementById('launchScreen');if(s){s.classList.add('leaving');setTimeout(()=>s.remove(),800)}switchTab('home')}
+function showOfflineInfo(){alert('FabSteel\nمحاسبات و ذخیره اطلاعات به‌صورت آفلاین\nسازنده: Eng. Davod Bagheri\nاستعلام قیمت نیازمند اینترنت است.')}
+function asciiDigits(v){return String(v??'').replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d)).replace(/[٠-٩]/g,d=>'٠١٢٣٤٥٦٧٨٩'.indexOf(d));}
+function getDetailNumber(src,rx){const m=src.match(rx);return m?Number(m[1]):0;}
+function auditLegacyAreaItems(){
+ let changed=false;
+ items=items.map(x=>{
+  const detail=asciiDigits(x.detail||''),name=asciiDigits(x.name||''),src=name+' '+detail;
+  const q1=getDetailNumber(src,/تعداد\s*([0-9]+(?:\.[0-9]+)?)/),qty=q1>0?q1:(Number(x.quantity)>0?Number(x.quantity):1);
+  const len=getDetailNumber(src,/طول\s*([0-9]+(?:\.[0-9]+)?)\s*mm/i);
+  const recalcWeight=(a)=>len>0?((a*STEEL_DENSITY/1e6)*(len/1000)*qty):x.weight;
+  const verified=(a,standard,method)=>({...x,area:a*qty,areaPerPieceMm2:a,quantity:qty,areaStatus:'verified',sectionMethod:method,sectionStandard:standard,weight:recalcWeight(a)});
+  // Plate: always recalculate from actual thickness × width, never trust a saved stale area.
+  if(x.kind==='sheet'||/ورق|شیت/.test(name)){
+   const t=getDetailNumber(detail,/ضخامت\s*([0-9]+(?:\.[0-9]+)?)/),w=getDetailNumber(detail,/عرض\s*([0-9]+(?:\.[0-9]+)?)/);
+   if(t>0&&w>0){changed=true;return verified(t*w,'مقطع هندسی ورق؛ ضخامت × عرض','thickness × width');}
+   if(x.areaStatus!=='legacy-unverified')changed=true;
+   return {...x,areaStatus:'legacy-unverified'};
+  }
+  // Standard rolled I/H and UPN families: refresh from the embedded standard table.
+  const m=src.match(/\b(IPE|HEA|HEB|UPN)\s*(50|65|80|100|120|140|160|180|200|220|240|260|270|280|300|320|330|340|350|360|380|400|450|500|550|600|650|700|800|900|1000)\b/i);
+  if(m){
+   const prefix=m[1].toUpperCase(),size=prefix+' '+m[2];
+   const key=prefix==='UPN'?'channel':prefix.toLowerCase();
+   const useCatalog=/کاتالوگ/i.test(detail+' '+(x.sectionMethod||''));
+   const catalog=Number(x.areaPerPieceMm2)||getDetailNumber(detail,/سطح مقطع واحد\s*([0-9]+(?:\.[0-9]+)?)/i);
+   const a=useCatalog&&catalog>0?catalog:Number(PROFILE_SIZES[key]?.[size]);
+   if(a>0){changed=true;return verified(a,useCatalog?'مقدار کاتالوگ سازنده':PROFILE_STANDARD[key],useCatalog?'catalogue section area':'standard section table area');}
+  }
+  // Equal-leg angles in the embedded EN 10056-1 table.
+  const am=src.match(/\bL\s*(\d+(?:\.\d+)?)\s*×\s*(\d+(?:\.\d+)?)\s*×\s*(\d+(?:\.\d+)?)/i);
+  if(am){
+   const size=`L ${am[1]}×${am[2]}×${am[3]}`;
+   const catalog=Number(x.areaPerPieceMm2)||getDetailNumber(detail,/سطح مقطع واحد\s*([0-9]+(?:\.[0-9]+)?)/i);
+   const useCatalog=/کاتالوگ/i.test(detail+' '+(x.sectionMethod||''));
+   const a=useCatalog&&catalog>0?catalog:Number(PROFILE_SIZES.angle?.[size]);
+   if(a>0){changed=true;return verified(a,useCatalog?'مقدار کاتالوگ سازنده':PROFILE_STANDARD.angle,useCatalog?'catalogue section area':'EN 10056-1:2017 table area');}
+  }
+  // Reinforcing bars: nominal circular area πd²/4 from the marked diameter.
+  const rm=src.match(/میلگرد\s*(\d+(?:\.\d+)?)/);
+  if(rm){const d=Number(rm[1]),a=Math.PI*d*d/4;if(d>0){changed=true;return verified(a,'سطح مقطع اسمی میلگرد؛ πd²/4','nominal circular section formula');}}
+  // Hollow sections: retain an explicitly entered catalogue A, otherwise recalculate from dimensions.
+  const bx=src.match(/قوطی\s*(\d+(?:\.\d+)?)\s*×\s*(\d+(?:\.\d+)?)\s*×\s*(\d+(?:\.\d+)?)/);
+  if(bx){
+   const custom=/کاتالوگ/i.test(detail+' '+(x.sectionMethod||''));
+   const a=custom?(Number(x.areaPerPieceMm2)||getDetailNumber(detail,/سطح مقطع واحد\s*([0-9]+(?:\.[0-9]+)?)/i)):calculateBoxAreaMm2(Number(bx[1]),Number(bx[2]),Number(bx[3]));
+   if(a>0){changed=true;return verified(a,custom?'مقدار کاتالوگ سازنده':'EN 10219-2:2019 Annex A.3',custom?'catalogue section area':'EN 10219-2:2019 hollow-section formula');}
+  }
+  const pm=src.match(/Ø\s*(\d+(?:\.\d+)?)\s*×\s*(\d+(?:\.\d+)?)/);
+  if(pm){
+   const custom=/کاتالوگ/i.test(detail+' '+(x.sectionMethod||''));
+   const a=custom?(Number(x.areaPerPieceMm2)||getDetailNumber(detail,/سطح مقطع واحد\s*([0-9]+(?:\.[0-9]+)?)/i)):calculatePipeAreaMm2(Number(pm[1]),Number(pm[2]));
+   if(a>0){changed=true;return verified(a,custom?'مقدار کاتالوگ سازنده':'EN 10219-2:2019 Annex A.2',custom?'catalogue section area':'EN 10219-2:2019 circular-section formula');}
+  }
+  // Z or another custom section: accept only a previously saved explicit catalogue area.
+  if(/پروفیل\s*Z|پروفیل Z/i.test(src)||/کاتالوگ/i.test(x.sectionMethod||'')){
+   const a=Number(x.areaPerPieceMm2)||getDetailNumber(detail,/سطح مقطع واحد\s*([0-9]+(?:\.[0-9]+)?)/i);
+   if(a>0){changed=true;return verified(a,'مقدار A کاتالوگ سازنده','catalogue section area');}
+  }
+  if(x.areaStatus!=='legacy-unverified')changed=true;
+  return {...x,areaStatus:'legacy-unverified'};
+ });
+ if(changed)localStorage.setItem('fabsteel_items',JSON.stringify(items));
+}
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>switchTab(b.dataset.tab));
+function val(id){return Number(document.getElementById(id).value)||0}
+function addSheet(){
+ if(!canAddMaterial())return;
+ const t=val('thick'),w=val('width'),l=val('length'),q=val('qty');
+ if(!(t>0&&w>0&&l>0&&q>0&&Number.isInteger(q)))return alert('ضخامت، عرض و طول باید بزرگ‌تر از صفر و تعداد باید عدد صحیح مثبت باشد.');
+ // Sheet cross-section is the section perpendicular to the rolling/length axis: thickness × width.
+ const areaPerPiece=t*w;
+ const weight=(areaPerPiece/1e6)*(l/1000)*STEEL_DENSITY*q;
+ items.push({name:'ورق شیت',detail:`ضخامت ${t} × عرض ${w} × طول ${l} mm · تعداد ${q} · سطح مقطع هر ورق ${fmt(areaPerPiece,2)} mm²`,weight,area:areaPerPiece*q,areaPerPieceMm2:areaPerPiece,quantity:q,areaStatus:'verified',sectionMethod:'thickness × width',sectionStandard:'مقطع هندسی ورق؛ ضخامت × عرض',kind:'sheet'});
+ save();switchTab('list');
+}
+
+// Section areas in mm². Rolled I/H and reinforcing bar values are nominal catalogue areas.
+// Angle values below are a limited list of EN 10056-1:2017 hot-rolled equal-leg sizes.
+const PROFILE_SIZES={
+ ipe:{'IPE 80':764,'IPE 100':1032,'IPE 120':1321,'IPE 140':1643,'IPE 160':2009,'IPE 180':2395,'IPE 200':2848,'IPE 220':3337,'IPE 240':3912,'IPE 270':4595,'IPE 300':5381,'IPE 330':6261,'IPE 360':7273,'IPE 400':8446,'IPE 450':9882,'IPE 500':11550,'IPE 550':13440,'IPE 600':15600},
+ hea:{'HEA 100':2124,'HEA 120':2534,'HEA 140':3142,'HEA 160':3877,'HEA 180':4525,'HEA 200':5383,'HEA 220':6434,'HEA 240':7684,'HEA 260':8682,'HEA 280':9726,'HEA 300':11253,'HEA 320':12437,'HEA 340':13347,'HEA 360':14276,'HEA 400':15898,'HEA 450':17803,'HEA 500':19754,'HEA 550':21176,'HEA 600':22646,'HEA 650':24164,'HEA 700':26048,'HEA 800':28583,'HEA 900':32053,'HEA 1000':34685},
+ heb:{'HEB 100':2604,'HEB 120':3401,'HEB 140':4296,'HEB 160':5425,'HEB 180':6525,'HEB 200':7808,'HEB 220':9104,'HEB 240':10599,'HEB 260':11844,'HEB 280':13136,'HEB 300':14908,'HEB 320':16134,'HEB 340':17090,'HEB 360':18063,'HEB 400':19778,'HEB 450':21798,'HEB 500':23864,'HEB 550':25406,'HEB 600':26996,'HEB 650':28634,'HEB 700':30638,'HEB 800':33418,'HEB 900':37128,'HEB 1000':40005},
+ angle:{'L 20×20×3':112,'L 25×25×3':142,'L 25×25×4':185,'L 25×25×5':227,'L 30×30×3':174,'L 30×30×4':227,'L 30×30×5':278,'L 35×35×3':204,'L 35×35×3.5':235,'L 35×35×4':267,'L 35×35×5':328,'L 38×38×4.5':326,'L 38×38×6':424,'L 40×40×3':235,'L 40×40×4':308,'L 40×40×5':379,'L 40×40×6':448,'L 45×45×3':266,'L 45×45×4':349,'L 45×45×4.5':390,'L 45×45×5':430,'L 45×45×6':509,'L 45×45×7':586,'L 50×50×3':296,'L 50×50×4':389,'L 50×50×5':480,'L 50×50×6':569,'L 50×50×7':656,'L 50×50×8':741,'L 50×50×9':824,'L 55×55×4':431,'L 55×55×5':532,'L 55×55×6':631,'L 60×60×4':471,'L 60×60×5':582,'L 60×60×6':691,'L 60×60×7':798,'L 60×60×8':903,'L 60×60×10':1110,'L 65×65×4':513,'L 65×65×5':634,'L 65×65×6':753,'L 65×65×7':870,'L 65×65×8':985,'L 65×65×9':1100,'L 65×65×10':1210,'L 65×65×11':1320},
+ channel:{'UPN 50':710,'UPN 65':900,'UPN 80':1100,'UPN 100':1350,'UPN 120':1700,'UPN 140':2040,'UPN 160':2400,'UPN 180':2800,'UPN 200':3220,'UPN 220':3740,'UPN 240':4230,'UPN 260':4830,'UPN 280':5330,'UPN 300':5880,'UPN 320':7580,'UPN 350':7730,'UPN 380':8040,'UPN 400':9150},
+ rebar:{'میلگرد ۸':50.27,'میلگرد ۱۰':78.54,'میلگرد ۱۲':113.10,'میلگرد ۱۴':153.94,'میلگرد ۱۶':201.06,'میلگرد ۱۸':254.47,'میلگرد ۲۰':314.16,'میلگرد ۲۲':380.13,'میلگرد ۲۵':490.87,'میلگرد ۲۸':615.75,'میلگرد ۳۲':804.25,'میلگرد ۳۶':1017.88,'میلگرد ۴۰':1256.64}
+};
+const PROFILE_STANDARD={ipe:'DIN EN 10365:2017-05 · IPE (سایزهای فهرست‌شده)',hea:'DIN EN 10365:2017-05 · HEA (سایزهای فهرست‌شده)',heb:'DIN EN 10365:2017-05 · HEB (سایزهای فهرست‌شده)',angle:'EN 10056-1:2017 · L مساوی‌الساقین',channel:'DIN EN 10365:2017-05 · UPN (سایزهای فهرست‌شده)',rebar:'سطح مقطع اسمی میلگرد · πd²/4'};
+function dynamicField(id,label,unit,step='any',value=''){
+ return `<div class="field"><label for="${id}">${label}</label><input id="${id}" type="number" min="0" step="${step}" value="${value}" inputmode="decimal"><div class="unit">${unit}</div></div>`;
+}
+function updateSizes(){
+ const type=document.getElementById('ptype').value,select=document.getElementById('psize');
+ const sizeField=document.getElementById('profileSizeField'),dynamic=document.getElementById('profileDynamicFields'),hint=document.getElementById('profileCalcHint');
+ const data=PROFILE_SIZES[type]||{};
+ const isTable=Object.keys(data).length>0;
+ sizeField.hidden=!isTable;
+ select.innerHTML='<option value="">انتخاب سایز</option>'+Object.entries(data).map(([name,area])=>`<option value="${area}">${name} — ${fmt(area,2)} mm²</option>`).join('');
+ let html='';
+ if(['ipe','hea','heb','channel'].includes(type)){
+  html='<div class=\"grid2\">'+dynamicField('catalogArea','سطح مقطع A واقعی از کاتالوگ (اختیاری؛ برای سایزهای جدید/غیرفهرست)','mm²','0.01','')+'</div><div class=\"grid2\"><div class=\"field\"><label for=\"catalogSizeName\">نام دقیق سایز کاتالوگی (اختیاری)</label><input id=\"catalogSizeName\" type=\"text\" placeholder=\"مثلاً IPE 550 AA یا UPE 200\"></div></div><p class=\"hint\">فهرست داخلی این نسخه برای سایزهای متداول بر پایه DIN EN 10365:2017-05 است. ویرایش DIN EN 10365:2026-09 چند سایز جدید اضافه کرده؛ برای سایزهای جدید یا خارج از فهرست، مقدار A و نام دقیق مقطع را از کاتالوگ/نسخه معتبر استاندارد وارد کنید.</p>';
+ } else if(type==='box'){
+  html='<div class="grid2">'+dynamicField('boxH','ارتفاع خارجی H','میلی‌متر','0.1','100')+dynamicField('boxB','عرض خارجی B','میلی‌متر','0.1','100')+dynamicField('boxT','ضخامت جداره T','میلی‌متر','0.1','5')+'</div><div class=\"grid2\">'+dynamicField('catalogArea','سطح مقطع واقعی کاتالوگ (اختیاری)','mm²','0.01','')+'</div><p class="hint">فرمول EN 10219-2:2019 برای قوطی سازه‌ای سردشکل جوشی؛ شعاع گوشه خارجی/داخلی طبق بازه ضخامت استاندارد منظور می‌شود. برای مقطع گرم‌ساخت یا مشخصات خاص، سطح مقطع واقعی کاتالوگ را وارد کنید.</p>';
+ } else if(type==='pipe'){
+  html='<div class="grid2">'+dynamicField('pipeD','قطر خارجی D','میلی‌متر','0.1','60.3')+dynamicField('pipeT','ضخامت جداره T','میلی‌متر','0.1','3.2')+'</div><div class=\"grid2\">'+dynamicField('catalogArea','سطح مقطع واقعی کاتالوگ (اختیاری)','mm²','0.01','')+'</div><p class="hint">سطح مقطع حلقوی طبق رابطه EN 10219-2:2019 محاسبه می‌شود؛ قطر داخلی برابر D−2T است.</p>';
+ } else if(type==='z'){
+  html='<div class="grid2">'+dynamicField('catalogArea','سطح مقطع اسمی از کاتالوگ / جدول اشتال','mm²','0.01','')+'</div><p class="hint">برای پروفیل Z به‌دلیل وابستگی به ارتفاع جان، بال‌ها، لبه‌ها، ضخامت و شعاع خم، سطح مقطع بدون مشخصات کامل حدس زده نمی‌شود. عدد A را از کاتالوگ سازنده یا جدول معتبر وارد کنید.</p>';
+ } else if(type==='angle'){
+  html='<div class="grid2">'+dynamicField('catalogArea','سطح مقطع کاتالوگ (در صورت سایز سفارشی)','mm²','0.01','')+'</div><p class="hint">فهرست بالا فقط سایزهای مساوی‌الساقینِ موجود در جدول EN 10056-1:2017 را پوشش می‌دهد. برای نبشی نامساوی یا سایز دیگر، مقدار A واقعی کاتالوگ را وارد کنید تا بر مقدار فهرست اولویت داشته باشد.</p>';
+ }
+ dynamic.innerHTML=html;
+ if(hint){
+  if(type==='box')hint.textContent='محاسبه قوطی سردشکل جوشی بر اساس EN 10219-2:2019؛ ابعاد خارجی و ضخامت واقعی را وارد کنید. چگالی مبنا ۷۸۵۰ kg/m³ است.';
+  else if(type==='pipe')hint.textContent='محاسبه لوله با قطر خارجی و ضخامت واقعی، طبق رابطه مقطع حلقوی EN 10219-2:2019. چگالی مبنا ۷۸۵۰ kg/m³ است.';
+  else if(type==='z')hint.textContent='برای Z مقدار سطح مقطع واقعی کاتالوگ وارد می‌شود؛ مقدار تخمینی خودکار تولید نمی‌شود.';
+  else if(type==='angle')hint.textContent='نبشی‌های فهرست از مقادیر A جدول EN 10056-1:2017 استفاده می‌کنند؛ برای موارد دیگر مقدار واقعی کاتالوگ را وارد کنید.';
+  else if(['ipe','hea','heb','channel'].includes(type))hint.textContent='مقادیر فهرست داخلی بر پایه DIN EN 10365:2017-05 هستند؛ برای سایزهای افزوده‌شده در DIN EN 10365:2026-09 یا سایز غیرفهرست، A کاتالوگی را وارد کنید. سطح مقطع تجمعی هر ردیف = A × تعداد.';
+  else hint.textContent='مقادیر سطح مقطع از جدول مقاطع استاندارد انتخاب می‌شوند. سطح مقطع کل هر ردیف = سطح مقطع واحد × تعداد.';
+ }
+}
+function calculateBoxAreaMm2(H,B,T){
+ if(!(H>0&&B>0&&T>0)||T>=Math.min(H,B)/2)throw new Error('ابعاد قوطی نامعتبر است؛ ضخامت باید کمتر از نصف کوچک‌ترین بعد باشد.');
+ const ro=T<=6?2*T:(T<=10?2.5*T:3*T);
+ const ri=T<=6?T:(T<=10?1.5*T:2*T);
+ // EN 10219-2:2019, Annex A.3; formula converted from cm² to mm².
+ return 2*T*(B+H-2*T)-(4-Math.PI)*(ro*ro-ri*ri);
+}
+function calculatePipeAreaMm2(D,T){
+ if(!(D>0&&T>0)||2*T>=D)throw new Error('ابعاد لوله نامعتبر است؛ ضخامت باید کمتر از نصف قطر خارجی باشد.');
+ const d=D-2*T;
+ // EN 10219-2:2019, Annex A.2; D and d in mm.
+ return Math.PI*(D*D-d*d)/4;
+}
+function addProfile(){
+ if(!canAddMaterial())return;
+ const type=document.getElementById('ptype').value,l=val('plen'),q=val('pqty');
+ if(!(l>0&&q>0&&Number.isInteger(q)))return alert('طول باید بزرگ‌تر از صفر و تعداد باید عدد صحیح مثبت باشد.');
+ let area=0,standard='',method='',label='',detailLabel='';
+ try{
+  if(type==='box'){
+   const H=val('boxH'),B=val('boxB'),T=val('boxT');
+   const catalogArea=val('catalogArea');area=catalogArea>0?catalogArea:calculateBoxAreaMm2(H,B,T);standard=catalogArea>0?'مقدار کاتالوگ سازنده':'EN 10219-2:2019 Annex A.3';method=catalogArea>0?'ورود سطح مقطع واقعی کاتالوگ':'محاسبه هندسی استاندارد با شعاع گوشه‌های مقرر';label='قوطی / باکس';detailLabel=`قوطی ${H}×${B}×${T} mm`;
+  } else if(type==='pipe'){
+   const D=val('pipeD'),T=val('pipeT');
+   const catalogArea=val('catalogArea');area=catalogArea>0?catalogArea:calculatePipeAreaMm2(D,T);standard=catalogArea>0?'مقدار کاتالوگ سازنده':'EN 10219-2:2019 Annex A.2';method=catalogArea>0?'ورود سطح مقطع واقعی کاتالوگ':'محاسبه حلقوی بر اساس قطر خارجی و ضخامت';label='لوله فولادی';detailLabel=`لوله Ø${D}×${T} mm`;
+  } else if(type==='z'){
+   area=val('catalogArea');if(!(area>0))return alert('برای پروفیل Z سطح مقطع اسمی واقعی را از کاتالوگ وارد کنید.');
+   standard='مقدار کاتالوگ سازنده / جدول اشتال';method='ورود سطح مقطع واقعی کاتالوگ';label='پروفیل Z';detailLabel='پروفیل Z';
+  } else {
+   const sel=document.getElementById('psize');
+   const selectedArea=Number(sel.value)||0;
+   const catalogArea=val('catalogArea');
+   area=catalogArea>0?catalogArea:selectedArea;
+   if(!(area>0))return alert('سایز استاندارد را انتخاب کنید'+(type==='angle'?' یا سطح مقطع کاتالوگ را وارد کنید.':'.'));
+   const typeEl=document.getElementById('ptype');
+   label=typeEl.options[typeEl.selectedIndex].text;
+   const catalogSizeName=document.getElementById('catalogSizeName')?.value.trim();
+   detailLabel=catalogArea>0?(catalogSizeName||label)+' · مقدار A کاتالوگی':(selectedArea>0?sel.options[sel.selectedIndex].text:label);
+   standard=catalogArea>0?'مقدار A واردشده از کاتالوگ':(PROFILE_STANDARD[type]||'جدول استاندارد');
+   method=catalogArea>0?'ورود سطح مقطع واقعی کاتالوگ':'انتخاب مقدار سطح مقطع جدول استاندارد';
+   if(type==='angle'&&catalogArea>0)detailLabel=label+' · مقدار A کاتالوگی';
+  }
+  if(!(Number.isFinite(area)&&area>0))return alert('سطح مقطع محاسبه‌شده معتبر نیست.');
+  const unitWeight=area*STEEL_DENSITY/1e6; // kg/m
+  const weight=unitWeight*(l/1000)*q;
+  const totalArea=area*q;
+  const detail=`${detailLabel} · سطح مقطع واحد ${fmt(area,2)} mm² · طول ${l} mm · تعداد ${q} · سطح مقطع تجمعی ردیف ${fmt(totalArea,2)} mm² · مبنا: ${standard}`;
+  items.push({name:label||'پروفیل فولادی',detail,weight,area:totalArea,areaPerPieceMm2:area,quantity:q,areaStatus:'verified',sectionMethod:method,sectionStandard:standard,kind:'profile'});
+  save();switchTab('list');
+ }catch(e){alert(e.message||'خطا در محاسبه سطح مقطع.');}
+}
+
+function save(){localStorage.setItem('fabsteel_items',JSON.stringify(items));render()}
+function fmt(n,d=2){return new Intl.NumberFormat('en-US',{useGrouping:true,maximumFractionDigits:d}).format(Number(n||0))}
+function svgLineChart(series,labels,aria){
+  const W=360,H=178,L=52,R=12,T=16,B=34, iw=W-L-R, ih=H-T-B;
+  const all=series.flatMap(a=>a.values).filter(Number.isFinite);
+  const max=Math.max(1,...all), n=Math.max(1,labels.length);
+  const x=i=>L+(n===1?iw/2:i*iw/(n-1));
+  const y=v=>T+ih-(v/max)*ih;
+  let grid='';
+  for(let k=0;k<=3;k++){
+    let val=max*k/3, yy=T+ih-k*ih/3;
+    grid+=`<line x1="${L}" y1="${yy}" x2="${W-R}" y2="${yy}" stroke="#b7f5cd" stroke-opacity=".20"/>
+    <text x="${L-9}" y="${yy+4}" text-anchor="end" fill="#c9f0d5" font-size="10" font-weight="700">${fmt(val,0)}</text>`;
+  }
+  let lines=series.map((ser)=>{
+    const coords=ser.values.map((v,i)=>({x:x(i),y:y(v)}));
+    let path='';
+    if(coords.length===1){path=`M ${coords[0].x} ${coords[0].y}`;}
+    else if(coords.length>1){
+      path=`M ${coords[0].x} ${coords[0].y}`;
+      for(let i=0;i<coords.length-1;i++){
+        const p0=coords[Math.max(0,i-1)], p1=coords[i], p2=coords[i+1], p3=coords[Math.min(coords.length-1,i+2)];
+        const c1x=p1.x+(p2.x-p0.x)/6, c1y=p1.y+(p2.y-p0.y)/6;
+        const c2x=p2.x-(p3.x-p1.x)/6, c2y=p2.y-(p3.y-p1.y)/6;
+        path+=` C ${c1x} ${c1y}, ${c2x} ${c2y}, ${p2.x} ${p2.y}`;
+      }
+    }
+    const color=ser.color;
+    const circles=ser.values.map((v,i)=>`<circle cx="${x(i)}" cy="${y(v)}" r="4" fill="${color}" stroke="#eaffef" stroke-width="1.2"><title>${escapeSvg(labels[i]||('ردیف '+(i+1)))}: ${fmt(v)} ${escapeSvg(ser.unit||'')}</title></circle>`).join('');
+    return `<path d="${path}" fill="none" stroke="${color}" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>${circles}`;
+  }).join('');
+  let ticks=labels.map((lab,i)=> (i===0||i===labels.length-1||i%Math.ceil(labels.length/5)===0)?`<text x="${x(i)}" y="${H-10}" text-anchor="middle" fill="#d0ead8" font-size="10" font-weight="700">${i+1}</text>`:'').join('');
+  return `<svg class="line-chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="${aria}">${grid}${lines}${ticks}</svg>`;
+}
+function escapeSvg(v){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+
+
+function applyTheme(theme){
+  const t=theme==='light'?'light':'dark';document.body.dataset.theme=t;
+  const btn=document.getElementById('themeToggle');
+  if(btn){btn.textContent=t==='light'?'🌙 حالت تاریک':'☀️ حالت روشن';btn.setAttribute('aria-label',t==='light'?'فعال‌کردن حالت تاریک':'فعال‌کردن حالت روشن');}
+  try{localStorage.setItem('fabsteel-theme',t)}catch(e){}
+  const meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.content=t==='light'?'#f3dfca':'#222629';
+}
+function toggleTheme(){applyTheme(document.body.dataset.theme==='light'?'dark':'light')}
+try{applyTheme(localStorage.getItem('fabsteel-theme')||'dark')}catch(e){applyTheme('dark')}
+
+function priceSearch(i,engine){
+  const x=items[i]; if(!x)return;
+  const material=((x.name||'')+' '+(x.detail||'')).trim();
+  const query=encodeURIComponent(material);
+  const urls={
+    torob:'https://torob.com/search/?query='+query,
+    basalam:'https://basalam.com/search?query='+query
+  };
+  const target=urls[engine]||urls.torob;
+  if(window.FabBridge){location.href=target;}else{window.open(target,'_blank','noopener');}
+}
+function addOffer(i){
+  const priceEl=document.getElementById('offerPrice'+i);
+  const price=Number((priceEl.value||'').replace(/[٬,\s]/g,''));
+  if(!Number.isFinite(price)||price<=0)return alert('قیمت معتبر هر کیلوگرم را به تومان وارد کنید.');
+  const weight=Number(items[i]&&items[i].weight)||0;
+  if(weight<=0)return alert('وزن این متریال معتبر نیست.');
+  if(!Array.isArray(items[i].offers))items[i].offers=[];
+  const totalPrice=price*weight;
+  items[i].offers.push({pricePerKg:price,totalPrice,createdAt:new Date().toISOString()});
+  save();
+}
+function removeOffer(i,j){
+  if(!items[i]||!Array.isArray(items[i].offers))return;
+  items[i].offers.splice(j,1);save();
+}
+function updateReportPriceTotal(){
+  const priced=items.map(x=>{
+    const offers=(Array.isArray(x.offers)?x.offers:[]).filter(o=>Number(o.pricePerKg)>0);
+    return offers.length?offers.reduce((best,o)=>!best||Number(o.totalPrice)<Number(best.totalPrice)?o:best,null):null;
+  }).filter(Boolean);
+  const total=priced.reduce((sum,o)=>sum+(Number(o.totalPrice)||0),0);
+  const totalEl=document.getElementById('reportPriceTotal');
+  const statusEl=document.getElementById('reportPriceStatus');
+  if(totalEl)totalEl.textContent=fmt(total,0)+' تومان';
+  if(statusEl)statusEl.textContent=items.length&&priced.length===items.length
+    ? 'تمام اقلام دارای قیمت هستند؛ جمع بر اساس کمترین پیشنهاد هر قلم محاسبه شده است.'
+    : `${priced.length} از ${items.length} قلم قیمت‌گذاری شده؛ اقلام بدون قیمت در جمع لحاظ نشده‌اند.`;
+  return {total,pricedCount:priced.length,itemCount:items.length};
+}
+function renderPrices(){
+  updateReportPriceTotal();
+  const count=document.getElementById('priceItemCount');
+  const offersCount=document.getElementById('offerCount');
+  const host=document.getElementById('priceItems');
+  if(!count||!offersCount||!host)return;
+  count.textContent=items.length.toLocaleString('fa-IR');
+  const allOffers=items.reduce((n,x)=>n+(Array.isArray(x.offers)?x.offers.filter(o=>Number(o.pricePerKg)>0).length:0),0);
+  offersCount.textContent=allOffers.toLocaleString('fa-IR');
+  const bestOffers=items.map(x=>{
+    const offers=(Array.isArray(x.offers)?x.offers:[]).filter(o=>Number(o.pricePerKg)>0);
+    return offers.length?offers.reduce((best,o)=>!best||Number(o.totalPrice)<Number(best.totalPrice)?o:best,null):null;
+  });
+  const pricedValues=bestOffers.filter(Boolean);
+  const grand=pricedValues.reduce((sum,o)=>sum+(Number(o.totalPrice)||0),0);
+  const wallet=document.getElementById('walletGrandTotal');
+  const walletStatus=document.getElementById('walletStatus');
+  const pricedCount=document.getElementById('walletPricedCount');
+  const missingCount=document.getElementById('walletMissingCount');
+  const breakdown=document.getElementById('walletBreakdown');
+  if(wallet)wallet.textContent=fmt(grand,0)+' تومان';
+  if(walletStatus)walletStatus.textContent=pricedValues.length===items.length&&items.length?'جمع کمترین پیشنهاد قیمت برای تمام اقلام':'جمع قیمت اقلام قیمت‌گذاری‌شده؛ اقلام بدون قیمت هنوز محاسبه نشده‌اند.';
+  if(pricedCount)pricedCount.textContent=pricedValues.length.toLocaleString('fa-IR')+' قلم قیمت‌گذاری‌شده';
+  if(missingCount)missingCount.textContent=(items.length-pricedValues.length).toLocaleString('fa-IR')+' قلم بدون قیمت';
+  if(breakdown){
+    breakdown.innerHTML=items.length?items.map((x,i)=>{
+      const best=bestOffers[i];
+      const weight=Number(x.weight)||0;
+      return `<div class="wallet-line"><div><b>${i+1}. ${escapeSvg(x.name||'قلم متریال')}</b><small>وزن: ${fmt(weight)} کیلوگرم · قیمت هر کیلو: ${best?fmt(best.pricePerKg,0)+' تومان':'ثبت نشده'}</small></div><strong>${best?fmt(best.totalPrice,0)+' تومان':'—'}</strong></div>`;
+    }).join(''):`<p class="hint">ابتدا متریال را به لیست محاسبات اضافه کنید.</p>`;
+  }
+  if(!items.length){host.innerHTML='<p class="hint">ابتدا ورق یا پروفیل به لیست محاسبات اضافه کنید.</p>';return;}
+  host.innerHTML=items.map((x,i)=>{
+    const offers=(Array.isArray(x.offers)?x.offers:[]).filter(o=>Number(o.pricePerKg)>0);
+    const sorted=offers.slice().sort((a,b)=>Number(a.totalPrice)-Number(b.totalPrice));
+    const best=sorted[0];
+    const offerHtml=offers.map((o,j)=>`<div class="offer"><strong>${fmt(o.pricePerKg,0)} تومان / کیلو</strong> · جمع ردیف: ${fmt(o.totalPrice,0)} تومان <button class="remove" onclick="removeOffer(${i},${j})">حذف</button></div>`).join('');
+    return `<div class="listitem price-item-motion">
+      <div class="listitemtop"><span>${i+1}. ${escapeSvg(x.name||'قلم متریال')}</span><span>${fmt(x.weight)} kg</span></div>
+      <small>${escapeSvg(x.detail||'')}</small>
+      <div class="price-actions">
+        <button class="mini-btn" onclick="priceSearch(${i},'torob')">جستجو در ترب</button>
+        <button class="mini-btn" onclick="priceSearch(${i},'basalam')">جستجو در باسلام</button>
+      </div>
+      <div class="offer-form">
+        <input id="offerPrice${i}" type="number" min="1" step="any" inputmode="decimal" placeholder="قیمت هر کیلو (تومان)">
+        <button class="btn secondary" onclick="addOffer(${i})">＋ ثبت پیشنهاد و محاسبه قیمت کل</button>
+      </div>
+      ${best?`<div class="price-best">کمترین قیمت هر کیلو: <strong>${fmt(best.pricePerKg,0)} تومان</strong><br>وزن: ${fmt(x.weight)} کیلوگرم<br>قیمت کل این ردیف: <strong>${fmt(best.totalPrice,0)} تومان</strong></div>`:'<p class="hint">هنوز قیمت هر کیلو برای این متریال ثبت نشده است.</p>'}
+      ${offerHtml}
+    </div>`;
+  }).join('');
+}
+
+function render(){
+  let total=items.reduce((s,x)=>s+(Number(x.weight)||0),0);
+  document.getElementById('totalWeight').textContent=fmt(total);
+  document.getElementById('itemCount').textContent=items.length.toLocaleString('fa-IR');
+  document.getElementById('items').innerHTML=items.length?items.map((x,i)=>{const area=Number(x.area)||0;const verified=x.areaStatus==='verified';const areaText=area?(verified?` · سطح مقطع ردیف: ${fmt(area,2)} mm² (${fmt(area/1000000,6)} m²)`:` · سطح مقطع قبلی: ${fmt(area,2)} mm² — نیازمند بازبینی`):'';return `<div class="listitem"><div class="listitemtop"><span>${i+1}. ${escapeSvg(x.name)}</span><span>${fmt(x.weight)} kg</span><button class="remove" onclick="removeItem(${i})">×</button></div><small>${escapeSvg(x.detail||'')}${areaText}</small></div>`}).join(''):'<p class="hint">هنوز موردی به لیست اضافه نشده است.</p>';
+  const verifiedItems=items.filter(x=>x.areaStatus==='verified');
+  const unverifiedItems=items.filter(x=>x.areaStatus!=='verified');
+  let totalArea=verifiedItems.reduce((s,x)=>s+(Number(x.area)||0),0);
+  document.getElementById('totalArea').textContent=fmt(totalArea,2)+' mm²';
+  const totalAreaM2=document.getElementById('totalAreaM2');if(totalAreaM2)totalAreaM2.textContent=fmt(totalArea/1000000,6)+' m²';
+  const audit=document.getElementById('areaAuditNote');
+  if(audit){if(unverifiedItems.length){audit.textContent=`توجه: ${unverifiedItems.length} ردیف قدیمی، داده ابعادی/استاندارد کافی برای تأیید سطح مقطع ندارد و در جمع قطعی لحاظ نشده است. برای محاسبه دقیق، آن ردیف‌ها را حذف و با مشخصات کامل دوباره ثبت کنید.`;audit.style.color='#b45309';}else{audit.textContent='تمام ردیف‌های ثبت‌شده دارای سطح مقطع تأییدشده هستند؛ جمع بالا شامل سطح مقطع واحد × تعداد برای تمام متریال است.';audit.style.color='';}}
+  document.getElementById('listTotalWeight').textContent=fmt(total)+' kg';
+  const sheetWeight=items.reduce((sum,x)=>sum+((x.kind==='sheet'||(!x.kind&&/ورق|شیت/.test(x.name||'')))?(Number(x.weight)||0):0),0);
+  const profileWeight=items.reduce((sum,x)=>sum+((x.kind==='profile'||(!x.kind&&!(/ورق|شیت/.test(x.name||''))))?(Number(x.weight)||0):0),0);
+  const allWeight=sheetWeight+profileWeight;
+  const sheetPct=allWeight?sheetWeight/allWeight*100:0;
+  const profilePct=allWeight?profileWeight/allWeight*100:0;
+  const sheetBar=document.querySelector('#weightSplitCapsule .split-sheet');
+  const profileBar=document.querySelector('#weightSplitCapsule .split-profile');
+  if(sheetBar)sheetBar.style.width=sheetPct+'%';
+  if(profileBar)profileBar.style.width=profilePct+'%';
+  const sheetPctEl=document.getElementById('sheetWeightPercent');
+  const profilePctEl=document.getElementById('profileWeightPercent');
+  if(sheetPctEl)sheetPctEl.textContent=fmt(sheetPct,1)+'٪';
+  if(profilePctEl)profilePctEl.textContent=fmt(profilePct,1)+'٪';
+  const splitNote=document.getElementById('weightSplitNote');
+  if(splitNote)splitNote.textContent=allWeight?'وزن ورق: '+fmt(sheetWeight)+' kg · وزن پروفیل: '+fmt(profileWeight)+' kg':'پس از افزودن متریال، درصد سهم وزنی هر گروه نمایش داده می‌شود.';
+  const labels=items.map((x,i)=>x.name||('ردیف '+(i+1)));
+  document.getElementById('weightChart').innerHTML=items.length?svgLineChart([{values:items.map(x=>Number(x.weight)||0),color:'#d97732',unit:'kg'}],labels,'نمودار خطی وزن هر قلم'):'<p class="chart-note">پس از افزودن اقلام، نمودار وزن نمایش داده می‌شود.</p>';
+  let cumW=0,cumA=0;const weights=[],areas=[];
+  items.forEach(x=>{cumW+=Number(x.weight)||0;if(x.areaStatus==='verified')cumA+=Number(x.area)||0;weights.push(cumW);areas.push(cumA)});
+  // Normalize each series independently for a readable dual-metric trend; exact values remain in the capsules and row list.
+  const norm=(arr)=>{const m=Math.max(1,...arr);return arr.map(v=>v/m*100)};
+  renderPrices();
+  document.getElementById('summaryChart').innerHTML=items.length?svgLineChart([
+    {values:norm(weights),color:'#d97732',unit:'% وزن تجمعی'},
+    {values:norm(areas),color:'#8b8177',unit:'% سطح مقطع تجمعی'}
+  ],labels,'روند نرمال‌شده وزن و سطح مقطع تجمعی'):'<p class="chart-note">پس از افزودن اقلام، نمودار روند نمایش داده می‌شود.</p>';
+}
+function updateReportTimestamp(){
+  updateReportPriceTotal();
+  const el=document.getElementById('reportDateTime');if(!el)return;
+  const now=new Date();
+  const date=new Intl.DateTimeFormat('fa-IR-u-ca-persian',{year:'numeric',month:'long',day:'numeric'}).format(now);
+  const time=new Intl.DateTimeFormat('fa-IR',{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).format(now);
+  el.textContent=date+' ـ ساعت '+time;
+  return now;
+}
+function exportPDF(){
+  if(!requirePro('خروجی PDF'))return;
+  switchTab('list');updateReportTimestamp();document.title='FabSteel-Project-Report';
+  setTimeout(()=>{try{updateReportTimestamp();if(window.FabBridge){window.FabBridge.printReport()}else{window.print()}}catch(e){alert('برای دریافت PDF از منوی مرورگر گزینه Print یا Save as PDF را انتخاب کنید.')}},350)
+}
+window.addEventListener('beforeprint',updateReportTimestamp);
+window.addEventListener('afterprint',()=>{document.title='FabSteel | مهندسی هوشمند'});
+function removeItem(i){items.splice(i,1);save()}function clearItems(){if(confirm('تمام ردیف‌ها حذف شوند؟')){items=[];save()}}render();
+auditLegacyAreaItems();updateSizes();render();updateReportTimestamp();refreshPlanCard();switchTab('home');
+window.addEventListener('load',()=>{setTimeout(()=>{const splash=document.getElementById('launchScreen');if(splash&&!splash.classList.contains('leaving'))enterFabSteel()},5200)});
+</script><script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(err => console.warn('Service worker registration failed', err)));
+}
+</script></body></html>

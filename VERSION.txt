@@ -1,0 +1,4 @@
+FabSteel PWA
+Version: 1.2.2
+Release: 2026-11-17
+Changes: permanent free access; corrected section-area calculations; verified aggregate mm2/m2 totals; DIN EN 10365 catalogue-A overrides for sizes not in the embedded table; legacy-row audit.
